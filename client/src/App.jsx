@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import io from 'socket.io-client';
 
-const socket = io.connect('https://localhost/3001');
+const socket = io.connect('http://localhost:3001');
 
 function App() {
   const sendMessage = () => {
@@ -12,16 +12,17 @@ function App() {
     );
   };
 
-  useEffect(() => {
-    socket.on('receive_message', (data) => {
-      alert(data.message);
-    });
-  }, [socket]);
-
   return (
     <div className='App'>
-      <input className='Input' placeholder='Message...' />
-      <button onClick={ () => sendMessage }>
+      <input
+        className='Input'
+        placeholder='Message...'
+      />
+
+      <button
+        className='Button'
+        onClick={ () => sendMessage() }
+      >
         Send Message
       </button>
     </div>
